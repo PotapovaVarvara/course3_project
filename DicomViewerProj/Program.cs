@@ -38,6 +38,8 @@ namespace NakataniProject
                   
                 }).Build();
 
+            ConfigureSerilog();
+
             using var serviceScope = host.Services.CreateScope();
             {
                 var services = serviceScope.ServiceProvider;
@@ -60,8 +62,11 @@ namespace NakataniProject
         private static void ConfigureSerilog()
         {
             Log.Logger = new LoggerConfiguration()
-                        .WriteTo.File(DateTime.Now.ToString() + "_log.txt")
+                .MinimumLevel.Debug()
+                        .WriteTo
+                        .MSSqlServer(DbManager.GetConnectionWithDb().ConnectionString, "Logs")
                         .CreateLogger();
+            Log.Information("Info");
         }
 
     }

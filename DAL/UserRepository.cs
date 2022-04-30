@@ -32,7 +32,7 @@ namespace DAL.Models
 		{
 			await EnsureTableExists();
 
-			var dbConnection = DbBuilder.GetConnectionWithDb();
+			var dbConnection = DbManager.GetConnectionWithDb();
 			string addUserExpression = "INSERT INTO [User] (Id, Name, Sex, DOB, Complaints) VALUES (@id, @name, @sex, @dob, @complaints)";
 			
 			var addUserCommand = new SqlCommand(addUserExpression, dbConnection);
@@ -56,7 +56,7 @@ namespace DAL.Models
 			
 			var sqlExpression = "SELECT Id, Name, DOB, Sex, Complaints from [User]";
 
-			await using var connection = DbBuilder.GetConnectionWithDb();
+			await using var connection = DbManager.GetConnectionWithDb();
 			connection.Open();
 			SqlCommand command = new SqlCommand(sqlExpression, connection);
 			var reader = await command.ExecuteReaderAsync();
@@ -90,7 +90,7 @@ namespace DAL.Models
 
 			var sqlExpression = "SELECT Id, Name, DOB, Sex, Complaints from [User] where id = @id";
 
-			await using var connection = DbBuilder.GetConnectionWithDb();
+			await using var connection = DbManager.GetConnectionWithDb();
 
 			connection.Open();
 			SqlCommand command = new SqlCommand(sqlExpression, connection);

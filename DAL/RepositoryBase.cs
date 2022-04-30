@@ -34,7 +34,7 @@ namespace DAL.Models
 				return;
 			}
 			
-			var dbConnection = DbBuilder.GetConnectionWithDb();
+			var dbConnection = DbManager.GetConnectionWithDb();
 			SqlCommand cmd = new SqlCommand(CreateTableQuery, dbConnection);
 			cmd.Parameters.Add(new SqlParameter("@tableName", TableName));
 			
@@ -56,7 +56,7 @@ namespace DAL.Models
 
 		private async Task<bool> TableExistsAsync()
 		{
-			var dbConnection = DbBuilder.GetConnectionWithDb();
+			var dbConnection = DbManager.GetConnectionWithDb();
 			
 			var isTableExists = "SELECT * FROM DicomViewerDb.sys.tables WHERE name=@tableName";
 			
@@ -74,9 +74,9 @@ namespace DAL.Models
 
 			try
 			{
-				var tmpConn = DbBuilder.GetConnection();
+				var tmpConn = DbManager.GetConnection();
 
-				sqlCreateDBQuery = string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", DbBuilder.GetDbName());
+				sqlCreateDBQuery = string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", DbManager.GetDbName());
 				
 				using (tmpConn)
 				{

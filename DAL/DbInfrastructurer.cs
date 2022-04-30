@@ -13,9 +13,9 @@ namespace DAL.Models
 	{
 		public void CreateDatabase()
 		{
-			var dbConnection = DbBuilder.GetConnection();
+			var dbConnection = DbManager.GetConnection();
 			
-			var databaseName = DbBuilder.GetDbName();
+			var databaseName = DbManager.GetDbName();
 
 			var createDb = $"CREATE DATABASE {databaseName } ON PRIMARY" +
 			               $"(NAME = {databaseName}_Data, " +
