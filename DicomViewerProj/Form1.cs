@@ -2,13 +2,15 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using Serilog;
 
 namespace NakataniProject
 {
     public partial class Form1 : Form
     {
         private readonly IUserService _userService;
-        
+        private static readonly ILogger _logger = Log.ForContext<Form1>();
+
         public Form1(IUserService userService)
         {
             _userService = userService;
@@ -19,6 +21,8 @@ namespace NakataniProject
         private async void Form1_Load(object sender, EventArgs e)
         {
             await LoadAllUsers();
+
+            _logger.Information("Form1 has been Initialized");
         }
 
         private void usersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,23 +53,26 @@ namespace NakataniProject
         private void patientsDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var dataGridView = (DataGridView) sender;
-            /*if (dataGridView.Columns[e.ColumnIndex].DataPropertyName == "Id")
+            if (dataGridView.Columns[e.ColumnIndex].Name == "Id")
             {
-                var id = dataGridView.CurrentCell.Value.ToString();
-            }*/
+                var userId = dataGridView.CurrentCell.Value.ToString();
+                var addRecordForm = new PatientPageForm(_userService);
+                addRecordForm.PatientId = Guid.Parse(userId);
+                addRecordForm.Show();
+            }
 
-            if (dataGridView.SelectedCells.Count > 0)
+           /* if (dataGridView.SelectedCells.Count > 0)
             {
                 var selectedRow = dataGridView.Rows[dataGridView.SelectedCells[0].RowIndex];
                 var isCellValue = Convert.ToString(selectedRow.Cells["Id"].Value);
-            }
+            }*/
         }
 
         private void addRecordBtn_Click(object sender, EventArgs e)
         {
             var selectedRow = patientsDataGrid.SelectedRows;
 
-            var addRecordForm = new AddRecordForm(GetCurrentRowPatientId());
+            var addRecordForm = new AddRecordForm(_userService);
             addRecordForm.Show();
             /*TabsControl.SelectTab("Record");*/
         }

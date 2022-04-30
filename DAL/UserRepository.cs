@@ -10,7 +10,9 @@ namespace DAL.Models
 	{
 		Task<int> AddUserAsync(User user);
 		
-		Task<List<User>> GetAllUsersUser();
+		Task<List<User>> GetAllUsersAsync();
+
+		Task<User> GetUsersByIdAsync(Guid userId);
 	}
 	
 	public class UserRepository: RepositoryBase, IUserRepository
@@ -46,7 +48,7 @@ namespace DAL.Models
 			return await _dbRequestExecutor.ExecuteNonQueryAsync(addUserCommand, dbConnection);
 		}
 
-		public async Task<List<User>> GetAllUsersUser()
+		public async Task<List<User>> GetAllUsersAsync()
 		{
 			await EnsureTableExists();
 			
@@ -80,7 +82,43 @@ namespace DAL.Models
 			return usersList;
 		}
 
-		protected override string TableName => "User";
+        public async Task<User> GetUsersByIdAsync(Guid userId)
+        {
+			await EnsureTableExists();
+
+			User userModel = null;
+
+			var sqlExpression = "SELECT Id, Name, DOB, Sex, Complaints from [User] where id = @id";
+
+			await using var connection = DbBuilder.GetConnectionWithDb();
+
+			connection.Open();
+			SqlCommand command = new SqlCommand(sqlExpression, connection);
+			command.Parameters.Add(new SqlParameter("@id", userId));
+
+			var reader = await command.ExecuteReaderAsync();
+
+			if (reader.HasRows)
+			{
+				while (reader.Read())
+				{
+					userModel = new User
+					{
+						Id = Guid.Parse(reader.GetValue(0).ToString() ?? string.Empty),
+						Name = reader.GetValue(1).ToString(),
+						DOB = DateTime.Parse(reader.GetValue(2).ToString() ?? string.Empty),
+						Sex = bool.Parse(reader.GetValue(3).ToString() ?? string.Empty),
+						Complaints = reader.GetValue(4).ToString()
+					};
+				}
+			}
+
+			await reader.CloseAsync();
+
+			return userModel;
+		}
+
+        protected override string TableName => "User";
 
 		protected override string CreateTableQuery => 
 			"CREATE TABLE [User] ( Id nvarchar(50) NOT NULL, Name nvarchar(50) NULL, DOB date NULL, Sex bit NULL, Complaints nvarchar(max) NULL )";

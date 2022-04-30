@@ -5,6 +5,7 @@ using DAL.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace NakataniProject
 {
@@ -16,10 +17,14 @@ namespace NakataniProject
         [STAThread]
         static void Main()
         {
+            Vintasoft.Imaging.ImagingGlobalSettings.Register("Varvara Potapova", "v.o.potapova@student.khai.edu", "2022-05-19", "cLMsG7dsnthXtWoO2k44hZxUl6CgtrHvMn/IMPbuRRr5FzGQ/I0hlUvUOUss3AJ+ArN3VY/8geOO3LE39alLxs78mwTXfive6ZPXiNkxeJahVUJwzhuR8MXB2asA5oN/okwLNU+/Dwy1NXDN4p/2+NXiaZd0M9TlRYICWiCZa6s");
+
+
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
+           // ConfigureSerilog();
             var host = new HostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
@@ -29,6 +34,8 @@ namespace NakataniProject
                     services.AddScoped<IUserRepository, UserRepository>();
                     services.AddScoped<IUserService, UserService>();
                     services.AddScoped<IDbRequestExecutor, DbRequestExecutor>();
+
+                  
                 }).Build();
 
             using var serviceScope = host.Services.CreateScope();
@@ -49,5 +56,13 @@ namespace NakataniProject
                 }
             }
         }
+
+        private static void ConfigureSerilog()
+        {
+            Log.Logger = new LoggerConfiguration()
+                        .WriteTo.File(DateTime.Now.ToString() + "_log.txt")
+                        .CreateLogger();
+        }
+
     }
 }

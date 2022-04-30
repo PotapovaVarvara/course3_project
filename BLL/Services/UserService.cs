@@ -11,6 +11,8 @@ namespace BLL
 		Task<int> AddUser(UserDto user);
 
 		Task<List<UserDto>> GetAllUsers();
+
+		Task<UserDto> GetUsersById(Guid userId);
 	}
 	
 	public class UserService: IUserService
@@ -38,20 +40,33 @@ namespace BLL
 		{
 			var usersList = new List<UserDto>();
 
-			var users = await _userRepository.GetAllUsersUser();
+			var users = await _userRepository.GetAllUsersAsync();
 
 			foreach (var user in users)
 			{
-				usersList.Add(new UserDto{
-					Id = user.Id.ToString(),
-					Name = user.Name,
-					DOB = user.DOB,
-					Complaints = user.Complaints,
-					Sex = user.Sex ? "male": "female"
-				});
+				usersList.Add(ToUserDto(user));
 			}
 
 			return usersList;
 		}
-	}
+
+        public async Task<UserDto> GetUsersById(Guid userId)
+        {
+			var user = await _userRepository.GetUsersByIdAsync(userId);
+
+			return ToUserDto(user);
+		}
+
+		private UserDto ToUserDto(User user) {
+
+			return new UserDto
+			{
+				Id = user.Id.ToString(),
+				Name = user.Name,
+				DOB = user.DOB,
+				Complaints = user.Complaints,
+				Sex = user.Sex ? "male" : "female"
+			};
+		}
+    }
 }
