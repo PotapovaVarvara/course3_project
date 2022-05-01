@@ -28,7 +28,7 @@ namespace NakataniProject
             var host = new HostBuilder()
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton<Form1>();
+                    services.AddSingleton<DicomViewer>();
                     services.AddLogging(configure => configure.AddConsole());
                     services.AddScoped<IDbInfrastructurer, DbInfrastructurer>();
                     services.AddScoped<IUserRepository, UserRepository>();
@@ -46,7 +46,7 @@ namespace NakataniProject
 
                 try
                 {
-                    var form1 = services.GetRequiredService<Form1>();
+                    var form1 = services.GetRequiredService<DicomViewer>();
 
                     Application.Run(form1);
                     
@@ -54,6 +54,7 @@ namespace NakataniProject
                 }
                 catch (Exception ex)
                 {
+                    Log.Error(ex, ex.Message);
                     Console.WriteLine(ex.Message);
                 }
             }
@@ -66,7 +67,6 @@ namespace NakataniProject
                         .WriteTo
                         .MSSqlServer(DbManager.GetConnectionWithDb().ConnectionString, "Logs")
                         .CreateLogger();
-            Log.Information("Info");
         }
 
     }

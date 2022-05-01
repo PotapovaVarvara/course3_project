@@ -12,7 +12,7 @@ namespace BLL
 
 		Task<List<UserDto>> GetAllUsers();
 
-		Task<UserDto> GetUsersById(Guid userId);
+		Task<UserDto> GetUsersByIdAsync(Guid userId);
 	}
 	
 	public class UserService: IUserService
@@ -50,7 +50,7 @@ namespace BLL
 			return usersList;
 		}
 
-        public async Task<UserDto> GetUsersById(Guid userId)
+        public async Task<UserDto> GetUsersByIdAsync(Guid userId)
         {
 			var user = await _userRepository.GetUsersByIdAsync(userId);
 

@@ -6,16 +6,17 @@ using Serilog;
 
 namespace NakataniProject
 {
-    public partial class Form1 : Form
+    public partial class DicomViewer : Form
     {
         private readonly IUserService _userService;
-        private static readonly ILogger _logger = Log.ForContext<Form1>();
+        private static readonly ILogger _logger = Log.ForContext<DicomViewer>();
 
-        public Form1(IUserService userService)
+        public DicomViewer(IUserService userService)
         {
             _userService = userService;
             
             InitializeComponent();
+            this.Icon = Properties.Resources.app_ico;
         }
 
         private async void Form1_Load(object sender, EventArgs e)

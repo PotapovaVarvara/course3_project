@@ -37,25 +37,35 @@ namespace NakataniProject
             Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance5 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
             Vintasoft.Imaging.UI.ThumbnailCaption thumbnailCaption1 = new Vintasoft.Imaging.UI.ThumbnailCaption();
             Vintasoft.Imaging.Codecs.Decoders.RenderingSettings renderingSettings1 = new Vintasoft.Imaging.Codecs.Decoders.RenderingSettings();
+
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientPageForm));
+
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ageLbl = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.sexLabel = new System.Windows.Forms.Label();
             this.nameLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.thumbnailViewer1 = new Vintasoft.Imaging.UI.ThumbnailViewer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.recordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.imageViewer1 = new Vintasoft.Imaging.UI.ImageViewer();
             this.dicomAnnotatedViewerToolStrip1 = new DemosCommonCode.Imaging.DicomAnnotatedViewerToolStrip();
+            this.openDicomFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.thumbnailViewer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -65,7 +75,7 @@ namespace NakataniProject
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.ageLbl);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.sexLabel);
             this.groupBox1.Controls.Add(this.nameLabel);
             this.groupBox1.Location = new System.Drawing.Point(13, 5);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -86,15 +96,15 @@ namespace NakataniProject
             this.ageLbl.TabIndex = 15;
             this.ageLbl.Text = "Age";
             // 
-            // label3
+            // sexLabel
             // 
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(28, 116);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 45);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Sex";
+            this.sexLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.sexLabel.Location = new System.Drawing.Point(28, 116);
+            this.sexLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.sexLabel.Name = "sexLabel";
+            this.sexLabel.Size = new System.Drawing.Size(101, 45);
+            this.sexLabel.TabIndex = 14;
+            this.sexLabel.Text = "Sex";
             // 
             // nameLabel
             // 
@@ -108,11 +118,11 @@ namespace NakataniProject
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(80, 81);
+            this.button1.Location = new System.Drawing.Point(798, 138);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(159, 33);
             this.button1.TabIndex = 17;
-            this.button1.Text = "Add";
+            this.button1.Text = "Save";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
@@ -135,6 +145,7 @@ namespace NakataniProject
             this.thumbnailViewer1.AutoScrollMinSize = new System.Drawing.Size(1, 1);
             this.thumbnailViewer1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.thumbnailViewer1.Clipboard = winFormsSystemClipboard1;
+            this.thumbnailViewer1.Controls.Add(this.statusStrip1);
             this.thumbnailViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             thumbnailAppearance1.BackColor = System.Drawing.Color.Transparent;
             thumbnailAppearance1.BorderColor = System.Drawing.Color.Gray;
@@ -188,9 +199,36 @@ namespace NakataniProject
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.button1);
+            this.splitContainer2.Panel2.Controls.Add(this.menuStrip1);
             this.splitContainer2.Size = new System.Drawing.Size(1445, 179);
             this.splitContainer2.SplitterDistance = 481;
             this.splitContainer2.TabIndex = 20;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.recordToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(960, 28);
+            this.menuStrip1.TabIndex = 18;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // recordToolStripMenuItem
+            // 
+            this.recordToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addNewToolStripMenuItem});
+            this.recordToolStripMenuItem.Name = "recordToolStripMenuItem";
+            this.recordToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.recordToolStripMenuItem.Text = "Record";
+            // 
+            // addNewToolStripMenuItem
+            // 
+            this.addNewToolStripMenuItem.Name = "addNewToolStripMenuItem";
+            this.addNewToolStripMenuItem.Size = new System.Drawing.Size(154, 26);
+            this.addNewToolStripMenuItem.Text = "Add New";
+            this.addNewToolStripMenuItem.Click += new System.EventHandler(this.addNewToolStripMenuItem_Click);
             // 
             // splitContainer3
             // 
@@ -230,14 +268,44 @@ namespace NakataniProject
             this.dicomAnnotatedViewerToolStrip1.DicomAnnotatedViewerTool = null;
             this.dicomAnnotatedViewerToolStrip1.Enabled = false;
             this.dicomAnnotatedViewerToolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.dicomAnnotatedViewerToolStrip1.ImageViewer = null;
-            this.dicomAnnotatedViewerToolStrip1.Location = new System.Drawing.Point(0, 0);
+            //this.dicomAnnotatedViewerToolStrip1.ImageViewer = null;
+            //this.dicomAnnotatedViewerToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.dicomAnnotatedViewerToolStrip1.MandatoryVisualTool = null;
             this.dicomAnnotatedViewerToolStrip1.Name = "dicomAnnotatedViewerToolStrip1";
             this.dicomAnnotatedViewerToolStrip1.Size = new System.Drawing.Size(960, 25);
-            this.dicomAnnotatedViewerToolStrip1.TabIndex = 0;
             this.dicomAnnotatedViewerToolStrip1.Text = "dicomAnnotatedViewerToolStrip1";
             this.dicomAnnotatedViewerToolStrip1.VisualToolsMenuItem = null;
+
+            // voiLutsToolStripSplitButton
+            // 
+            this.voiLutsToolStripSplitButton = new System.Windows.Forms.ToolStripSplitButton();
+            this.voiLutsToolStripSplitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.voiLutsToolStripSplitButton.Image = ((System.Drawing.Image)(resources.GetObject("voiLutsToolStripSplitButton.Image")));
+            this.voiLutsToolStripSplitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.voiLutsToolStripSplitButton.Name = "voiLutsToolStripSplitButton";
+            this.voiLutsToolStripSplitButton.Size = new System.Drawing.Size(39, 24);
+            this.voiLutsToolStripSplitButton.Text = "Value of interest lookup tables";
+
+            this.dicomAnnotatedViewerToolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.dicomAnnotatedViewerToolStrip1.ImageViewer = this.imageViewer1;
+            this.dicomAnnotatedViewerToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.voiLutsToolStripSplitButton});
+            this.dicomAnnotatedViewerToolStrip1.Location = new System.Drawing.Point(463, 0);
+           // this.dicomAnnotatedViewerToolStrip1.Size = new System.Drawing.Size(81, 27);
+            this.dicomAnnotatedViewerToolStrip1.TabIndex = 7;
+            // 
+            // openDicomFileDialog
+            // 
+            this.openDicomFileDialog.FileName = "openDicomFileDialog";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 161);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(960, 24);
+            this.statusStrip1.TabIndex = 0;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // PatientPageForm
             // 
@@ -247,6 +315,7 @@ namespace NakataniProject
             this.Controls.Add(this.splitContainer3);
             this.Controls.Add(this.splitContainer2);
             this.Controls.Add(this.splitContainer1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "PatientPageForm";
             this.Text = "PatientPageForm";
             this.Load += new System.EventHandler(this.PatientPageForm_Load);
@@ -254,10 +323,15 @@ namespace NakataniProject
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.thumbnailViewer1.ResumeLayout(false);
+            this.thumbnailViewer1.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
@@ -265,12 +339,21 @@ namespace NakataniProject
             this.imageViewer1.PerformLayout();
             this.ResumeLayout(false);
 
+            this.progressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(100, 18);
+            this.progressBar1.Visible = false;
+
+          
+
+
         }
 
         #endregion
-
+        private System.Windows.Forms.ToolStripProgressBar progressBar1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label sexLabel;
         private System.Windows.Forms.Label nameLabel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -280,5 +363,13 @@ namespace NakataniProject
         private Vintasoft.Imaging.UI.ImageViewer imageViewer1;
         private System.Windows.Forms.Label ageLbl;
         private DemosCommonCode.Imaging.DicomAnnotatedViewerToolStrip dicomAnnotatedViewerToolStrip1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem recordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem addNewToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openDicomFileDialog;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+
+        private System.Windows.Forms.ToolStripSplitButton voiLutsToolStripSplitButton;
+
     }
 }

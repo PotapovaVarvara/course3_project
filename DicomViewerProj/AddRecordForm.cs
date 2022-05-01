@@ -14,7 +14,7 @@ namespace NakataniProject
 		public AddRecordForm(IUserService userService)
 		{
 			InitializeComponent();
-			var user = userService.GetUsersById(PatientId);
+			var user = userService.GetUsersByIdAsync(PatientId);
 		}
 
 		private void AddRecordForm_Load(object sender, EventArgs e)

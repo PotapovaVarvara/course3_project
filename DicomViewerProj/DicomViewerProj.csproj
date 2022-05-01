@@ -16,6 +16,8 @@
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.7.1-dev-00014" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
     <PackageReference Include="Vintasoft.Imaging.Annotation.Dicom.UI" Version="11.0.11.1" />
+    <PackageReference Include="Vintasoft.Imaging.Dicom" Version="4.0.11.1" />
+    <PackageReference Include="Vintasoft.Imaging.Dicom.UI" Version="4.0.11.1" />
     <PackageReference Include="Vintasoft.Imaging.Jpeg2000Codec" Version="7.0.11.1" />
   </ItemGroup>
 
@@ -30,6 +32,11 @@
     </Compile>
     <Compile Update="AddRecordForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
 
 
@@ -59,12 +66,22 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DemosCommonCode.Imaging\VisualToolsToolStrip\VisualTools\MeasurementVisualTools\Resources\ImageMeasureTool.png">
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\app_icon.ico">
+    </EmbeddedResource>
+    
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
       <HintPath>..\..\..\..\..\Windows\Microsoft.NET\assembly\GAC_MSIL\System.Windows.Forms\v4.0_4.0.0.0__b77a5c561934e089\System.Windows.Forms.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
