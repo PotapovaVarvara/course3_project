@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
 
-namespace NakataniProject.Services
+namespace DicomViewerProj.Services
 {
 	public static class DataGridHelper
 	{

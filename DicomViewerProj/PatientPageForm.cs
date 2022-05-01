@@ -31,7 +31,7 @@ using DemosCommonCode.Spelling;
 using DemosCommonCode.Dicom;
 using System.Collections.Generic;
 
-namespace NakataniProject
+namespace DicomViewerProj
 {
     public partial class PatientPageForm : Form
     {

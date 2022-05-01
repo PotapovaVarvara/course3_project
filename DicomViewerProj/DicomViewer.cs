@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using BLL;
 using Serilog;
 
-namespace NakataniProject
+namespace DicomViewerProj
 {
     public partial class DicomViewer : Form
     {

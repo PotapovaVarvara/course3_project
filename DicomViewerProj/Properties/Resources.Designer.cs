@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NakataniProject.Properties {
+namespace DicomViewerProj.Properties {
     using System;
     
     

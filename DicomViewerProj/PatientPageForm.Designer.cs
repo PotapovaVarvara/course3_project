@@ -1,5 +1,5 @@
 ﻿
-namespace NakataniProject
+namespace DicomViewerProj
 {
     partial class PatientPageForm
     {

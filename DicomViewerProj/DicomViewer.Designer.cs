@@ -1,4 +1,4 @@
-﻿namespace NakataniProject
+﻿namespace DicomViewerProj
 {
     partial class DicomViewer
     {

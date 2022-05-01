@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Windows.Forms;
 using BLL;
-using NakataniProject.Services;
+using DicomViewerProj.Services;
 
-namespace NakataniProject
+namespace DicomViewerProj
 {
 	public partial class AddRecordForm : Form
 	{

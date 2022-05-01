@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using BLL;
 using Models.Dto;
 
-namespace NakataniProject
+namespace DicomViewerProj
 {
 	public partial class AddPatientForm : Form
 	{

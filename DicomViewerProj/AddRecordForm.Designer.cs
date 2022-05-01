@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace NakataniProject
+namespace DicomViewerProj
 {
 	partial class AddRecordForm
 	{

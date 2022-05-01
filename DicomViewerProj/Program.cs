@@ -7,7 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
 
-namespace NakataniProject
+namespace DicomViewerProj
 {
     static class Program
     {
