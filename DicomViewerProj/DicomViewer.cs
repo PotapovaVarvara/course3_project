@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using DicomViewerDemo;
 using Serilog;
 
 namespace DicomViewerProj
@@ -59,6 +60,8 @@ namespace DicomViewerProj
                 var userId = dataGridView.CurrentCell.Value.ToString();
                 var addRecordForm = new PatientPageForm(_userService);
                 addRecordForm.PatientId = Guid.Parse(userId);
+                // var addRecordForm = new PatientPageForm(_userService);
+                //addRecordForm.PatientId = Guid.Parse(userId);
                 addRecordForm.Show();
             }
 
@@ -73,7 +76,7 @@ namespace DicomViewerProj
         {
             var selectedRow = patientsDataGrid.SelectedRows;
 
-            var addRecordForm = new AddRecordForm(_userService);
+            var addRecordForm = new PatientPageForm(_userService);
             addRecordForm.Show();
             /*TabsControl.SelectTab("Record");*/
         }
