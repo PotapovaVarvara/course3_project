@@ -32,6 +32,7 @@ using DemosCommonCode.Imaging.Codecs.Dialogs;
 using DemosCommonCode.Spelling;
 using DemosCommonCode.Dicom;
 using BLL;
+using DAL.Models;
 
 namespace DicomViewerDemo
 {
@@ -56,8 +57,11 @@ namespace DicomViewerDemo
 
 
         private readonly IUserService _userService;
+        private readonly IRecordRepository _recordRepository;
 
         public Guid PatientId { set; private get; }
+
+        private string _currentOpenedFile;
 
         /// <summary>
         /// Template of the application title.
@@ -222,13 +226,14 @@ namespace DicomViewerDemo
         /// <summary>
         /// Initializes a new instance of the <see cref="PatientPageForm"/> class.
         /// </summary>
-        public PatientPageForm(IUserService userService)
+        public PatientPageForm(IUserService userService, IRecordRepository recordRepository)
         {
             InitializeComponent();
 
             this.Icon = DicomViewerProj.Properties.Resources.app_ico;
 
             _userService = userService;
+            _recordRepository = recordRepository;
 
             MoveDicomCodecToFirstPosition();
 
@@ -1854,7 +1859,7 @@ namespace DicomViewerDemo
             animationDelayToolStripMenuItem.Enabled = animationRepeatToolStripMenuItem.Enabled;
 
             thumbnailViewer1.Enabled = isDicomFileLoaded && !isDicomFileOpening && !isFileSaving;
-
+           
             voiLutsToolStripSplitButton.Visible = isMonochromeImage && _voiLutParamsForm == null;
             voiLutsToolStripSplitButton.Enabled = isDicomFileLoaded && !isDicomFileOpening && !isFileSaving && !isAnimationStarted;
 
@@ -2028,6 +2033,9 @@ namespace DicomViewerDemo
                     AddDicomFilesToSeries(openDicomFileDialog.FileNames);
                     _dicomViewerTool.DicomViewerTool.DicomImageVoiLut =
                         _dicomViewerTool.DicomViewerTool.DefaultDicomImageVoiLut;
+
+                    _currentOpenedFile = openDicomFileDialog.FileNames[0];
+                    addRecordBtn.Enabled = true;
                 }
             }
         }
@@ -3297,6 +3305,8 @@ namespace DicomViewerDemo
             labelName.Text = user.Name;
             labelAge.Text = "age " + user.Age.ToString();
             labelSex.Text = user.Sex;
+
+         
         }
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
@@ -3312,6 +3322,36 @@ namespace DicomViewerDemo
         private void thumbnailViewer1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var firstSelectedItem = listView1.SelectedItems[0];
+        }
+
+        private async void addRecordBtn_Click(object sender, EventArgs e)
+        {
+            var recordModel = new UserRecord { Id = Guid.NewGuid(),
+                UserId = PatientId, 
+                BodyPart = bodyPartTb.Text,
+                RecordDate = DateTime.Parse(recordDatetb.Text),
+                Note = notesTb.Text
+            };
+
+            var image = imageViewer1.Images[0];
+            var imageName = $"img_{Guid.NewGuid()}.DCM";
+
+            string destinationPath = $"../../../Data/{imageName}";
+            File.Copy((image.SourceInfo.Stream as FileStream).Name, destinationPath); 
+            recordModel.FileName = imageName;
+
+            await _recordRepository.AddRecordAsync(recordModel);
+            
+            bodyPartTb.Clear();
+            notesTb.Clear();
+
+            CloseDicomSeries();
+            addRecordBtn.Enabled = false;
         }
     }
 }

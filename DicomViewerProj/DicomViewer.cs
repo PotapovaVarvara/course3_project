@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BLL;
+using DAL.Models;
 using DicomViewerDemo;
 using Serilog;
 
@@ -10,12 +11,15 @@ namespace DicomViewerProj
     public partial class DicomViewer : Form
     {
         private readonly IUserService _userService;
+        private readonly IRecordRepository _recordRepository;
+
         private static readonly ILogger _logger = Log.ForContext<DicomViewer>();
 
-        public DicomViewer(IUserService userService)
+        public DicomViewer(IUserService userService, IRecordRepository recordRepository)
         {
             _userService = userService;
-            
+            _recordRepository = recordRepository;
+
             InitializeComponent();
             this.Icon = Properties.Resources.app_ico;
         }
@@ -48,7 +52,7 @@ namespace DicomViewerProj
             foreach (var user in users)
             {
                 // Id, Name, DOB, Sex, Complaints
-                patientsDataGrid.Rows.Add(user.Id, user.Name, user.DOB, user.Sex, user.Complaints);
+                patientsDataGrid.Rows.Add(user.Id, user.Name, user.DOB.ToString("d"), user.Sex, user.Complaints);
             }
         }
 
@@ -58,27 +62,15 @@ namespace DicomViewerProj
             if (dataGridView.Columns[e.ColumnIndex].Name == "Id")
             {
                 var userId = dataGridView.CurrentCell.Value.ToString();
-                var addRecordForm = new PatientPageForm(_userService);
+                var addRecordForm = new PatientPageForm(_userService, _recordRepository);
                 addRecordForm.PatientId = Guid.Parse(userId);
-                // var addRecordForm = new PatientPageForm(_userService);
-                //addRecordForm.PatientId = Guid.Parse(userId);
                 addRecordForm.Show();
             }
-
-           /* if (dataGridView.SelectedCells.Count > 0)
-            {
-                var selectedRow = dataGridView.Rows[dataGridView.SelectedCells[0].RowIndex];
-                var isCellValue = Convert.ToString(selectedRow.Cells["Id"].Value);
-            }*/
         }
 
         private void addRecordBtn_Click(object sender, EventArgs e)
         {
-            var selectedRow = patientsDataGrid.SelectedRows;
-
-            var addRecordForm = new PatientPageForm(_userService);
-            addRecordForm.Show();
-            /*TabsControl.SelectTab("Record");*/
+          
         }
 
         private void goToRecordsBtn_Click(object sender, EventArgs e)

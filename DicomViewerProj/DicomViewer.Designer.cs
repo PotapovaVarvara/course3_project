@@ -30,7 +30,11 @@
         {
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TabsControl = new System.Windows.Forms.TabControl();
+            this.RecordsTab = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PatientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PatientsTab = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.addUserBtn = new System.Windows.Forms.Button();
@@ -40,22 +44,17 @@
             this.DOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Sex = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Complaints = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RecordsTab = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PatientId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RecordTab = new System.Windows.Forms.TabPage();
+            this.TabsControl = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
-            this.TabsControl.SuspendLayout();
+            this.RecordsTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.PatientsTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.patientsDataGrid)).BeginInit();
-            this.RecordsTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.TabsControl.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -76,18 +75,60 @@
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
-            // TabsControl
+            // RecordsTab
             // 
-            this.TabsControl.Controls.Add(this.PatientsTab);
-            this.TabsControl.Controls.Add(this.RecordsTab);
-            this.TabsControl.Controls.Add(this.RecordTab);
-            this.TabsControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TabsControl.Location = new System.Drawing.Point(0, 30);
-            this.TabsControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.TabsControl.Name = "TabsControl";
-            this.TabsControl.SelectedIndex = 0;
-            this.TabsControl.Size = new System.Drawing.Size(1067, 662);
-            this.TabsControl.TabIndex = 4;
+            this.RecordsTab.Controls.Add(this.dataGridView1);
+            this.RecordsTab.Location = new System.Drawing.Point(4, 29);
+            this.RecordsTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RecordsTab.Name = "RecordsTab";
+            this.RecordsTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RecordsTab.Size = new System.Drawing.Size(1059, 629);
+            this.RecordsTab.TabIndex = 1;
+            this.RecordsTab.Text = "Records";
+            this.RecordsTab.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.PatientId,
+            this.dataGridViewTextBoxColumn2});
+            this.dataGridView1.Location = new System.Drawing.Point(11, 26);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1021, 334);
+            this.dataGridView1.TabIndex = 6;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // PatientId
+            // 
+            this.PatientId.HeaderText = "Patient Id";
+            this.PatientId.MinimumWidth = 6;
+            this.PatientId.Name = "PatientId";
+            this.PatientId.ReadOnly = true;
+            this.PatientId.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Patient Name";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             // 
             // PatientsTab
             // 
@@ -195,73 +236,19 @@
             this.Complaints.Name = "Complaints";
             this.Complaints.ReadOnly = true;
             // 
-            // RecordsTab
+            // TabsControl
             // 
-            this.RecordsTab.Controls.Add(this.dataGridView1);
-            this.RecordsTab.Location = new System.Drawing.Point(4, 29);
-            this.RecordsTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RecordsTab.Name = "RecordsTab";
-            this.RecordsTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RecordsTab.Size = new System.Drawing.Size(1059, 629);
-            this.RecordsTab.TabIndex = 1;
-            this.RecordsTab.Text = "Records";
-            this.RecordsTab.UseVisualStyleBackColor = true;
+            this.TabsControl.Controls.Add(this.PatientsTab);
+            this.TabsControl.Controls.Add(this.RecordsTab);
+            this.TabsControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TabsControl.Location = new System.Drawing.Point(0, 30);
+            this.TabsControl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.TabsControl.Name = "TabsControl";
+            this.TabsControl.SelectedIndex = 0;
+            this.TabsControl.Size = new System.Drawing.Size(1067, 662);
+            this.TabsControl.TabIndex = 4;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.PatientId,
-            this.dataGridViewTextBoxColumn2});
-            this.dataGridView1.Location = new System.Drawing.Point(11, 26);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1021, 334);
-            this.dataGridView1.TabIndex = 6;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            // 
-            // PatientId
-            // 
-            this.PatientId.HeaderText = "Patient Id";
-            this.PatientId.MinimumWidth = 6;
-            this.PatientId.Name = "PatientId";
-            this.PatientId.ReadOnly = true;
-            this.PatientId.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Patient Name";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // RecordTab
-            // 
-            this.RecordTab.Location = new System.Drawing.Point(4, 29);
-            this.RecordTab.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RecordTab.Name = "RecordTab";
-            this.RecordTab.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RecordTab.Size = new System.Drawing.Size(1059, 629);
-            this.RecordTab.TabIndex = 2;
-            this.RecordTab.Text = "Record";
-            this.RecordTab.UseVisualStyleBackColor = true;
-            // 
-            // Form1
+            // DicomViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -270,38 +257,25 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "DicomViewer";
+            this.Text = "Dicom Viewer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.TabsControl.ResumeLayout(false);
+            this.RecordsTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.PatientsTab.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.patientsDataGrid)).EndInit();
-            this.RecordsTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.TabsControl.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
-
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PatientId;
-
-        private System.Windows.Forms.DataGridView dataGridView1;
-
-        private System.Windows.Forms.TabPage RecordTab;
-
-
-        private System.Windows.Forms.TabControl TabsControl;
-        private System.Windows.Forms.TabPage PatientsTab;
-        private System.Windows.Forms.TabPage RecordsTab;
 
 
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
@@ -309,6 +283,12 @@
 
         #endregion
 
+        private System.Windows.Forms.TabPage RecordsTab;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PatientId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.TabPage PatientsTab;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button addUserBtn;
         private System.Windows.Forms.DataGridView patientsDataGrid;
@@ -317,6 +297,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DOB;
         private System.Windows.Forms.DataGridViewTextBoxColumn Sex;
         private System.Windows.Forms.DataGridViewTextBoxColumn Complaints;
+        private System.Windows.Forms.TabControl TabsControl;
     }
 }
 

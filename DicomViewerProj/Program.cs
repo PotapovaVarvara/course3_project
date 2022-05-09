@@ -34,8 +34,9 @@ namespace DicomViewerProj
                     services.AddScoped<IUserRepository, UserRepository>();
                     services.AddScoped<IUserService, UserService>();
                     services.AddScoped<IDbRequestExecutor, DbRequestExecutor>();
+                    
+                    services.AddScoped<IRecordRepository, RecordRepository>();
 
-                  
                 }).Build();
 
             ConfigureSerilog();

@@ -42,5 +42,10 @@ namespace DicomViewerProj
 			}
 			else savePatientBtn.Enabled = true;
 		}
-	}
+
+        private void AddPatientForm_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

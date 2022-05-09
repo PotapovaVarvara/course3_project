@@ -33,7 +33,7 @@ namespace DAL.Models
 			await EnsureTableExists();
 
 			var dbConnection = DbManager.GetConnectionWithDb();
-			string addUserExpression = "INSERT INTO [User] (Id, Name, Sex, DOB, Complaints) VALUES (@id, @name, @sex, @dob, @complaints)";
+			string addUserExpression = "INSERT INTO [Users] (Id, Name, Sex, DOB, Complaints) VALUES (@id, @name, @sex, @dob, @complaints)";
 			
 			var addUserCommand = new SqlCommand(addUserExpression, dbConnection);
 
@@ -54,7 +54,7 @@ namespace DAL.Models
 			
 			var usersList = new List<User>();
 			
-			var sqlExpression = "SELECT Id, Name, DOB, Sex, Complaints from [User]";
+			var sqlExpression = "SELECT Id, Name, DOB, Sex, Complaints from [Users]";
 
 			await using var connection = DbManager.GetConnectionWithDb();
 			connection.Open();
@@ -88,7 +88,7 @@ namespace DAL.Models
 
 			User userModel = null;
 
-			var sqlExpression = "SELECT Id, Name, DOB, Sex, Complaints from [User] where id = @id";
+			var sqlExpression = $"SELECT Id, Name, DOB, Sex, Complaints from [{TableName}] where id = @id";
 
 			await using var connection = DbManager.GetConnectionWithDb();
 
@@ -118,9 +118,9 @@ namespace DAL.Models
 			return userModel;
 		}
 
-        protected override string TableName => "User";
+        protected override string TableName => "Users";
 
-		protected override string CreateTableQuery => 
-			"CREATE TABLE [User] ( Id nvarchar(50) NOT NULL, Name nvarchar(50) NULL, DOB date NULL, Sex bit NULL, Complaints nvarchar(max) NULL )";
+		protected override string CreateTableQuery =>
+			"CREATE TABLE [Users] ( Id nvarchar(50) NOT NULL PRIMARY KEY CLUSTERED, Name nvarchar(50) NULL, DOB date NULL, Sex bit NULL, Complaints nvarchar(max) NULL )";
 	}
 }
