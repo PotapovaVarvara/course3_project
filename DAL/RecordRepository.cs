@@ -1,12 +1,17 @@
 ﻿
 
+using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace DAL.Models
 {
     public interface IRecordRepository {
-        //Task<int> GetAllByUserAsync(User user);
+        Task<UserRecord> GetByIdAsync(Guid userId);
+
+        Task<List<UserRecord>> GetAllByUserAsync(Guid userId);
+
         Task<int> AddRecordAsync(UserRecord model);
     }
 
@@ -40,6 +45,77 @@ namespace DAL.Models
             addUserCommand.Parameters.Add(new SqlParameter("@UserId", model.UserId));
 
             return await _dbRequestExecutor.ExecuteNonQueryAsync(addUserCommand, dbConnection);
+        }
+
+        public async Task<List<UserRecord>> GetAllByUserAsync(Guid userId)
+        {
+            await EnsureTableExists();
+
+            var resultList = new List<UserRecord>();
+
+            var sqlExpression = $"SELECT Id, BodyPart, Date, FileName, Note from [{TableName}] where UserId = @id";
+
+            await using var connection = DbManager.GetConnectionWithDb();
+            connection.Open();
+            SqlCommand command = new SqlCommand(sqlExpression, connection);
+            command.Parameters.Add(new SqlParameter("@id", userId));
+
+            var reader = await command.ExecuteReaderAsync();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    resultList.Add(new UserRecord
+                    {
+                        Id = Guid.Parse(reader.GetValue(0).ToString() ?? string.Empty),
+                        BodyPart = reader.GetValue(1).ToString(),
+                        RecordDate= DateTime.Parse(reader.GetValue(2).ToString() ?? string.Empty),
+                        FileName = reader.GetValue(3).ToString(),
+                        Note = reader.GetValue(4).ToString()
+                    });
+                }
+            }
+
+            await reader.CloseAsync();
+
+            return resultList;
+        }
+
+        public async Task<UserRecord> GetByIdAsync(Guid userId)
+        {
+            await EnsureTableExists();
+
+            UserRecord model = null;
+
+            var sqlExpression = $"Select Id, BodyPart, Date, FileName, Note from[{TableName}] where Id = @id";
+
+            await using var connection = DbManager.GetConnectionWithDb();
+
+            connection.Open();
+            SqlCommand command = new SqlCommand(sqlExpression, connection);
+            command.Parameters.Add(new SqlParameter("@id", userId));
+
+            var reader = await command.ExecuteReaderAsync();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    model = new UserRecord
+                    {
+                        Id = Guid.Parse(reader.GetValue(0).ToString() ?? string.Empty),
+                        BodyPart = reader.GetValue(1).ToString(),
+                        RecordDate = DateTime.Parse(reader.GetValue(2).ToString() ?? string.Empty),
+                        FileName = reader.GetValue(3).ToString(),
+                        Note = reader.GetValue(4).ToString()
+                    };
+                }
+            }
+
+            await reader.CloseAsync();
+
+            return model;
         }
 
         protected override string TableName => "Record";

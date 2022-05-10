@@ -33,6 +33,7 @@ using DemosCommonCode.Spelling;
 using DemosCommonCode.Dicom;
 using BLL;
 using DAL.Models;
+using BLL.Helpers;
 
 namespace DicomViewerDemo
 {
@@ -1859,7 +1860,7 @@ namespace DicomViewerDemo
             animationDelayToolStripMenuItem.Enabled = animationRepeatToolStripMenuItem.Enabled;
 
             thumbnailViewer1.Enabled = isDicomFileLoaded && !isDicomFileOpening && !isFileSaving;
-           
+
             voiLutsToolStripSplitButton.Visible = isMonochromeImage && _voiLutParamsForm == null;
             voiLutsToolStripSplitButton.Enabled = isDicomFileLoaded && !isDicomFileOpening && !isFileSaving && !isAnimationStarted;
 
@@ -2026,18 +2027,31 @@ namespace DicomViewerDemo
             {
                 if (openDicomFileDialog.FileNames.Length > 0)
                 {
-                    // close the previously opened DICOM files
-                    ClosePreviouslyOpenedFiles();
+                    OpenDicomFileInternal(openDicomFileDialog.FileNames);
+                    /* ClosePreviouslyOpenedFiles();
 
-                    // add DICOM files to the DICOM series
-                    AddDicomFilesToSeries(openDicomFileDialog.FileNames);
-                    _dicomViewerTool.DicomViewerTool.DicomImageVoiLut =
-                        _dicomViewerTool.DicomViewerTool.DefaultDicomImageVoiLut;
+                     AddDicomFilesToSeries(openDicomFileDialog.FileNames);
+                     _dicomViewerTool.DicomViewerTool.DicomImageVoiLut =
+                         _dicomViewerTool.DicomViewerTool.DefaultDicomImageVoiLut;
 
-                    _currentOpenedFile = openDicomFileDialog.FileNames[0];
-                    addRecordBtn.Enabled = true;
+                     _currentOpenedFile = openDicomFileDialog.FileNames[0];
+                     addRecordBtn.Enabled = true;*/
                 }
             }
+        }
+
+        private void OpenDicomFileInternal(params string[] fileNames) {
+
+            // close the previously opened DICOM files
+            ClosePreviouslyOpenedFiles();
+
+            // add DICOM files to the DICOM series
+            AddDicomFilesToSeries(fileNames);
+            _dicomViewerTool.DicomViewerTool.DicomImageVoiLut =
+                _dicomViewerTool.DicomViewerTool.DefaultDicomImageVoiLut;
+
+            //_currentOpenedFile = openDicomFileDialog.FileNames[0];
+            addRecordBtn.Enabled = true;
         }
 
         /// <summary>
@@ -3306,7 +3320,24 @@ namespace DicomViewerDemo
             labelAge.Text = "age " + user.Age.ToString();
             labelSex.Text = user.Sex;
 
-         
+            FillListView();
+        }
+
+        private async void FillListView()
+        {
+            listView1.Items.Clear();
+
+            var records = await _recordRepository.GetAllByUserAsync(PatientId);
+            foreach (var record in records)
+            {
+                var bodyPart = record.BodyPart == null ? "" : record.BodyPart;
+                // listView1.Items.Add(record.RecordDate.ToString() +" - "+ bodyPart);
+
+                listView1.Items.Add(new ListViewItem {
+                    Tag = record.Id,
+                    Text = record.RecordDate.ToString() + " - " + bodyPart
+                });
+            }
         }
 
         private void toolStripStatusLabel1_Click(object sender, EventArgs e)
@@ -3324,9 +3355,36 @@ namespace DicomViewerDemo
 
         }
 
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        private async void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var firstSelectedItem = listView1.SelectedItems[0];
+            var selectedItem = listView1.SelectedItems[0];
+            var recordId = selectedItem.Tag;
+            var record = await _recordRepository.GetByIdAsync(Guid.Parse(recordId.ToString()));
+
+            var imageFileName = RecordFileHelper.GetRelativeFilePath(record.FileName);
+
+            OpenDicomFileInternal(imageFileName);
+
+
+            bodyPartTb.Text = record.BodyPart;
+            notesTb.Text = record.Note;
+            recordDatetb.Text = record.RecordDate.ToString();
+
+            SetEnabledToAllCustomImputs(false);
+        }
+
+        private void SetEnabledToAllCustomImputs(bool enabled)
+        {
+            bodyPartTb.Enabled = enabled;
+            notesTb.Enabled = enabled;
+            recordDatetb.Enabled = enabled;
+            addRecordBtn.Enabled = enabled;
+        }
+
+        private void ClearAllCustomImputs()
+        {
+            bodyPartTb.Clear();
+            notesTb.Clear();
         }
 
         private async void addRecordBtn_Click(object sender, EventArgs e)
@@ -3339,9 +3397,12 @@ namespace DicomViewerDemo
             };
 
             var image = imageViewer1.Images[0];
-            var imageName = $"img_{Guid.NewGuid()}.DCM";
+            var imageName = DicomFileNamingHelper.GetDicomFileNameWithExt(Guid.NewGuid());
+            //$"img_{Guid.NewGuid()}.DCM";
 
-            string destinationPath = $"../../../Data/{imageName}";
+            string destinationPath = RecordFileHelper.GetRelativeFilePath(imageName);
+
+                //$"../../../Data/{imageName}";
             File.Copy((image.SourceInfo.Stream as FileStream).Name, destinationPath); 
             recordModel.FileName = imageName;
 
@@ -3352,6 +3413,13 @@ namespace DicomViewerDemo
 
             CloseDicomSeries();
             addRecordBtn.Enabled = false;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            CloseDicomSeries();
+
+            ClearAllCustomImputs();
         }
     }
 }

@@ -54,7 +54,7 @@ namespace DAL.Models
 			
 			var usersList = new List<User>();
 			
-			var sqlExpression = "SELECT Id, Name, DOB, Sex, Complaints from [Users]";
+			var sqlExpression = $"SELECT Id, Name, DOB, Sex, Complaints from [{TableName}]";
 
 			await using var connection = DbManager.GetConnectionWithDb();
 			connection.Open();

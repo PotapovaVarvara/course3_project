@@ -167,7 +167,7 @@ namespace DicomViewerProj
             this.Controls.Add(this.pictureBox1);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "AddPatientForm";
-            this.Text = "AddPatientForm";
+            this.Text = "DMR - Patient Registration";
             this.Load += new System.EventHandler(this.AddPatientForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

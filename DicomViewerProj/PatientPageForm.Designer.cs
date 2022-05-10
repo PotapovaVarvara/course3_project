@@ -29,14 +29,16 @@ namespace DicomViewerDemo
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Vintasoft.Imaging.Utils.WinFormsSystemClipboard winFormsSystemClipboard2 = new Vintasoft.Imaging.Utils.WinFormsSystemClipboard();
-            Vintasoft.Imaging.Codecs.Decoders.RenderingSettings renderingSettings2 = new Vintasoft.Imaging.Codecs.Decoders.RenderingSettings();
-            Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance6 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
-            Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance7 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
-            Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance8 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
-            Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance9 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
-            Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance10 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
-            Vintasoft.Imaging.UI.ThumbnailCaption thumbnailCaption2 = new Vintasoft.Imaging.UI.ThumbnailCaption();
+            Vintasoft.Imaging.Utils.WinFormsSystemClipboard winFormsSystemClipboard1 = new Vintasoft.Imaging.Utils.WinFormsSystemClipboard();
+            Vintasoft.Imaging.Codecs.Decoders.RenderingSettings renderingSettings1 = new Vintasoft.Imaging.Codecs.Decoders.RenderingSettings();
+            Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance1 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
+            Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance2 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
+            Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance3 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
+            Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance4 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
+            Vintasoft.Imaging.UI.ThumbnailAppearance thumbnailAppearance5 = new Vintasoft.Imaging.UI.ThumbnailAppearance();
+            Vintasoft.Imaging.UI.ThumbnailCaption thumbnailCaption1 = new Vintasoft.Imaging.UI.ThumbnailCaption();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("5/4/22 12:00:00 AM lala");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("lalla2");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientPageForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.imageViewer1 = new Vintasoft.Imaging.UI.ImageViewer();
@@ -150,11 +152,11 @@ namespace DicomViewerDemo
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.listView1 = new System.Windows.Forms.ListView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelAge = new System.Windows.Forms.Label();
             this.labelSex = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.openDicomAnnotationsFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.annotationInteractionModeToolStrip = new System.Windows.Forms.ToolStrip();
@@ -169,6 +171,7 @@ namespace DicomViewerDemo
             this.imageViewerToolStrip2 = new DemosCommonCode.Imaging.ImageViewerToolStrip();
             this.saveDicomAnnotationsFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -213,10 +216,10 @@ namespace DicomViewerDemo
             // imageViewer1
             // 
             this.imageViewer1.BackColor = System.Drawing.Color.Black;
-            this.imageViewer1.Clipboard = winFormsSystemClipboard2;
+            this.imageViewer1.Clipboard = winFormsSystemClipboard1;
             this.imageViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.imageViewer1.FocusPointAnchor = Vintasoft.Imaging.UI.AnchorType.None;
-            this.imageViewer1.ImageRenderingSettings = renderingSettings2;
+            this.imageViewer1.ImageRenderingSettings = renderingSettings1;
             this.imageViewer1.ImageRotationAngle = 0;
             this.imageViewer1.IsFocusPointFixed = false;
             this.imageViewer1.IsKeyboardNavigationEnabled = true;
@@ -242,33 +245,33 @@ namespace DicomViewerDemo
             this.thumbnailViewer1.AllowDrop = true;
             this.thumbnailViewer1.AutoScrollMinSize = new System.Drawing.Size(1, 1);
             this.thumbnailViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.thumbnailViewer1.Clipboard = winFormsSystemClipboard2;
+            this.thumbnailViewer1.Clipboard = winFormsSystemClipboard1;
             this.thumbnailViewer1.Dock = System.Windows.Forms.DockStyle.Left;
-            thumbnailAppearance6.BackColor = System.Drawing.Color.Transparent;
-            thumbnailAppearance6.BorderColor = System.Drawing.Color.Gray;
-            thumbnailAppearance6.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Dotted;
-            thumbnailAppearance6.BorderWidth = 1;
-            this.thumbnailViewer1.FocusedThumbnailAppearance = thumbnailAppearance6;
+            thumbnailAppearance1.BackColor = System.Drawing.Color.Transparent;
+            thumbnailAppearance1.BorderColor = System.Drawing.Color.Gray;
+            thumbnailAppearance1.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Dotted;
+            thumbnailAppearance1.BorderWidth = 1;
+            this.thumbnailViewer1.FocusedThumbnailAppearance = thumbnailAppearance1;
             this.thumbnailViewer1.GenerateOnlyVisibleThumbnails = true;
-            thumbnailAppearance7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(186)))), ((int)(((byte)(210)))), ((int)(((byte)(235)))));
-            thumbnailAppearance7.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(186)))), ((int)(((byte)(210)))), ((int)(((byte)(235)))));
-            thumbnailAppearance7.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            thumbnailAppearance7.BorderWidth = 2;
-            this.thumbnailViewer1.HoveredThumbnailAppearance = thumbnailAppearance7;
+            thumbnailAppearance2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(186)))), ((int)(((byte)(210)))), ((int)(((byte)(235)))));
+            thumbnailAppearance2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(186)))), ((int)(((byte)(210)))), ((int)(((byte)(235)))));
+            thumbnailAppearance2.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            thumbnailAppearance2.BorderWidth = 2;
+            this.thumbnailViewer1.HoveredThumbnailAppearance = thumbnailAppearance2;
             this.thumbnailViewer1.ImageRotationAngle = 0;
             this.thumbnailViewer1.Location = new System.Drawing.Point(0, 0);
             this.thumbnailViewer1.MultiSelect = false;
             this.thumbnailViewer1.Name = "thumbnailViewer1";
-            thumbnailAppearance8.BackColor = System.Drawing.Color.Black;
-            thumbnailAppearance8.BorderColor = System.Drawing.Color.Black;
-            thumbnailAppearance8.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            thumbnailAppearance8.BorderWidth = 0;
-            this.thumbnailViewer1.NotReadyThumbnailAppearance = thumbnailAppearance8;
-            thumbnailAppearance9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(238)))), ((int)(((byte)(253)))));
-            thumbnailAppearance9.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(222)))), ((int)(((byte)(253)))));
-            thumbnailAppearance9.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            thumbnailAppearance9.BorderWidth = 1;
-            this.thumbnailViewer1.SelectedThumbnailAppearance = thumbnailAppearance9;
+            thumbnailAppearance3.BackColor = System.Drawing.Color.Black;
+            thumbnailAppearance3.BorderColor = System.Drawing.Color.Black;
+            thumbnailAppearance3.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            thumbnailAppearance3.BorderWidth = 0;
+            this.thumbnailViewer1.NotReadyThumbnailAppearance = thumbnailAppearance3;
+            thumbnailAppearance4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(170)))), ((int)(((byte)(238)))), ((int)(((byte)(253)))));
+            thumbnailAppearance4.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(222)))), ((int)(((byte)(253)))));
+            thumbnailAppearance4.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            thumbnailAppearance4.BorderWidth = 1;
+            this.thumbnailViewer1.SelectedThumbnailAppearance = thumbnailAppearance4;
             this.thumbnailViewer1.ShortcutCopy = System.Windows.Forms.Shortcut.None;
             this.thumbnailViewer1.ShortcutCut = System.Windows.Forms.Shortcut.None;
             this.thumbnailViewer1.ShortcutDelete = System.Windows.Forms.Shortcut.None;
@@ -277,14 +280,14 @@ namespace DicomViewerDemo
             this.thumbnailViewer1.Size = new System.Drawing.Size(165, 126);
             this.thumbnailViewer1.TabIndex = 0;
             this.thumbnailViewer1.Text = "thumbnailViewer1";
-            thumbnailAppearance10.BackColor = System.Drawing.Color.Transparent;
-            thumbnailAppearance10.BorderColor = System.Drawing.Color.Transparent;
-            thumbnailAppearance10.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
-            thumbnailAppearance10.BorderWidth = 1;
-            this.thumbnailViewer1.ThumbnailAppearance = thumbnailAppearance10;
-            thumbnailCaption2.Padding = new Vintasoft.Imaging.PaddingF(0F, 0F, 0F, 0F);
-            thumbnailCaption2.TextColor = System.Drawing.Color.Black;
-            this.thumbnailViewer1.ThumbnailCaption = thumbnailCaption2;
+            thumbnailAppearance5.BackColor = System.Drawing.Color.Transparent;
+            thumbnailAppearance5.BorderColor = System.Drawing.Color.Transparent;
+            thumbnailAppearance5.BorderStyle = System.Windows.Forms.ButtonBorderStyle.Solid;
+            thumbnailAppearance5.BorderWidth = 1;
+            this.thumbnailViewer1.ThumbnailAppearance = thumbnailAppearance5;
+            thumbnailCaption1.Padding = new Vintasoft.Imaging.PaddingF(0F, 0F, 0F, 0F);
+            thumbnailCaption1.TextColor = System.Drawing.Color.Black;
+            this.thumbnailViewer1.ThumbnailCaption = thumbnailCaption1;
             this.thumbnailViewer1.ThumbnailFlowStyle = Vintasoft.Imaging.UI.ThumbnailFlowStyle.SingleRow;
             this.thumbnailViewer1.ThumbnailImagePadding = new Vintasoft.Imaging.PaddingF(0F, 0F, 0F, 0F);
             this.thumbnailViewer1.ThumbnailMargin = new System.Windows.Forms.Padding(3);
@@ -293,6 +296,7 @@ namespace DicomViewerDemo
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.addRecordBtn);
             this.groupBox2.Controls.Add(this.bodyPartTb);
             this.groupBox2.Controls.Add(this.notesTb);
@@ -340,7 +344,7 @@ namespace DicomViewerDemo
             this.recordDatetb.Location = new System.Drawing.Point(150, 29);
             this.recordDatetb.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.recordDatetb.Name = "recordDatetb";
-            this.recordDatetb.Size = new System.Drawing.Size(208, 28);
+            this.recordDatetb.Size = new System.Drawing.Size(291, 28);
             this.recordDatetb.TabIndex = 6;
             // 
             // label1
@@ -1215,24 +1219,16 @@ namespace DicomViewerDemo
             // 
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.HideSelection = false;
-            this.listView1.LargeImageList = this.imageList1;
+            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1,
+            listViewItem2});
             this.listView1.Location = new System.Drawing.Point(165, 0);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(910, 126);
-            this.listView1.SmallImageList = this.imageList1;
             this.listView1.TabIndex = 1;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.List;
             this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "app_icon.ico");
-            this.imageList1.Images.SetKeyName(1, "main_ico.ico");
-            this.imageList1.Images.SetKeyName(2, "brain.jpg");
             // 
             // groupBox1
             // 
@@ -1273,6 +1269,15 @@ namespace DicomViewerDemo
             this.labelName.Size = new System.Drawing.Size(43, 17);
             this.labelName.TabIndex = 0;
             this.labelName.Text = "name";
+            // 
+            // imageList1
+            // 
+            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "app_icon.ico");
+            this.imageList1.Images.SetKeyName(1, "main_ico.ico");
+            this.imageList1.Images.SetKeyName(2, "brain.jpg");
             // 
             // openDicomAnnotationsFileDialog
             // 
@@ -1405,6 +1410,16 @@ namespace DicomViewerDemo
             this.saveFileDialog1.DefaultExt = "mpg";
             this.saveFileDialog1.Filter = "Mpeg files|*.mpg";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(129, 168);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(190, 29);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Clear Image and Data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // PatientPageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -1419,7 +1434,7 @@ namespace DicomViewerDemo
             this.MinimumSize = new System.Drawing.Size(375, 330);
             this.Name = "PatientPageForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "User Page";
+            this.Text = "DMR - Patient Page";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -1588,5 +1603,6 @@ namespace DicomViewerDemo
         private System.Windows.Forms.Button addRecordBtn;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Button button1;
     }
 }
