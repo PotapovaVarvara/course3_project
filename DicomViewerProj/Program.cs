@@ -17,8 +17,8 @@ namespace DicomViewerProj
         [STAThread]
         static void Main()
         {
-            Vintasoft.Imaging.ImagingGlobalSettings.Register("Varvara Potapova", "v.o.potapova@student.khai.edu", "2022-05-19", "cLMsG7dsnthXtWoO2k44hZxUl6CgtrHvMn/IMPbuRRr5FzGQ/I0hlUvUOUss3AJ+ArN3VY/8geOO3LE39alLxs78mwTXfive6ZPXiNkxeJahVUJwzhuR8MXB2asA5oN/okwLNU+/Dwy1NXDN4p/2+NXiaZd0M9TlRYICWiCZa6s");
-
+            //Vintasoft.Imaging.ImagingGlobalSettings.Register("Varvara Potapova", "v.o.potapova@student.khai.edu", "2022-05-19", "cLMsG7dsnthXtWoO2k44hZxUl6CgtrHvMn/IMPbuRRr5FzGQ/I0hlUvUOUss3AJ+ArN3VY/8geOO3LE39alLxs78mwTXfive6ZPXiNkxeJahVUJwzhuR8MXB2asA5oN/okwLNU+/Dwy1NXDN4p/2+NXiaZd0M9TlRYICWiCZa6s");
+            Vintasoft.Imaging.ImagingGlobalSettings.Register("Varvara Potapowa", "potapowa.varvara@gmail.com", "2022-06-21", "GSR+5jusgQAyYrmnTJS/iwGEB4yUAiBJBbS74CztaBl+6a+YkK5/Zzm/Jq76KuV35df0Xs5Fzmj7aVBATNUoxNo+Oxw2RSbpAKkeogCcQUDwdzDRchqirmJI4ukPsxKTMzfQGUw901CF5EaxzrD2D7O8aGe6thcrfsf5FzBzL54");
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();

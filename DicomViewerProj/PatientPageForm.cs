@@ -229,7 +229,13 @@ namespace DicomViewerDemo
         /// </summary>
         public PatientPageForm(IUserService userService, IRecordRepository recordRepository)
         {
-            InitializeComponent();
+            try {
+                InitializeComponent();
+            }
+            catch (Exception ex ) {
+                int i = 0;
+            }
+           
 
             this.Icon = DicomViewerProj.Properties.Resources.app_ico;
 
@@ -1378,10 +1384,10 @@ namespace DicomViewerDemo
         /// </summary>
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using (AboutBoxForm dlg = new AboutBoxForm())
+           /* using (AboutBoxForm dlg = new AboutBoxForm())
             {
                 dlg.ShowDialog();
-            }
+            }*/
         }
 
         #endregion

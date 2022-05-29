@@ -41,9 +41,10 @@ namespace DicomViewerDemo
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("lalla2");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatientPageForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.imageViewer1 = new Vintasoft.Imaging.UI.ImageViewer();
             this.thumbnailViewer1 = new Vintasoft.Imaging.UI.ThumbnailViewer();
+            this.imageViewer1 = new Vintasoft.Imaging.UI.ImageViewer();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.addRecordBtn = new System.Windows.Forms.Button();
             this.bodyPartTb = new System.Windows.Forms.TextBox();
             this.notesTb = new System.Windows.Forms.TextBox();
@@ -171,7 +172,6 @@ namespace DicomViewerDemo
             this.imageViewerToolStrip2 = new DemosCommonCode.Imaging.ImageViewerToolStrip();
             this.saveDicomAnnotationsFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -311,6 +311,16 @@ namespace DicomViewerDemo
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Record Data";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(129, 168);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(190, 29);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Clear Image and Data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // addRecordBtn
             // 
@@ -1217,12 +1227,14 @@ namespace DicomViewerDemo
             // 
             // listView1
             // 
+            this.listView1.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.HideSelection = false;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2});
             this.listView1.Location = new System.Drawing.Point(165, 0);
+            this.listView1.MultiSelect = false;
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(910, 126);
             this.listView1.TabIndex = 1;
@@ -1409,16 +1421,6 @@ namespace DicomViewerDemo
             // 
             this.saveFileDialog1.DefaultExt = "mpg";
             this.saveFileDialog1.Filter = "Mpeg files|*.mpg";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(129, 168);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(190, 29);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Clear Image and Data";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // PatientPageForm
             // 

@@ -38,6 +38,8 @@
             this.PatientsTab = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.addUserBtn = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.label1 = new System.Windows.Forms.Label();
             this.patientsDataGrid = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PatientName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +55,10 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.Panel2.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.patientsDataGrid)).BeginInit();
             this.TabsControl.SuspendLayout();
             this.SuspendLayout();
@@ -156,7 +162,7 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.patientsDataGrid);
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Size = new System.Drawing.Size(1051, 619);
             this.splitContainer1.SplitterDistance = 56;
             this.splitContainer1.TabIndex = 7;
@@ -171,6 +177,36 @@
             this.addUserBtn.Text = "Add a Patient";
             this.addUserBtn.UseVisualStyleBackColor = true;
             this.addUserBtn.Click += new System.EventHandler(this.addUserBtn_Click);
+            // 
+            // splitContainer2
+            // 
+            this.splitContainer2.Cursor = System.Windows.Forms.Cursors.HSplit;
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.label1);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.patientsDataGrid);
+            this.splitContainer2.Size = new System.Drawing.Size(1051, 559);
+            this.splitContainer2.SplitterDistance = 53;
+            this.splitContainer2.TabIndex = 6;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label1.Location = new System.Drawing.Point(16, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 38);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Patients ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // patientsDataGrid
             // 
@@ -192,7 +228,7 @@
             this.patientsDataGrid.ReadOnly = true;
             this.patientsDataGrid.RowHeadersWidth = 51;
             this.patientsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.patientsDataGrid.Size = new System.Drawing.Size(1051, 559);
+            this.patientsDataGrid.Size = new System.Drawing.Size(1051, 502);
             this.patientsDataGrid.TabIndex = 5;
             this.patientsDataGrid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.patientsDataGrid_CellClick);
             // 
@@ -270,6 +306,11 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.Panel1.PerformLayout();
+            this.splitContainer2.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
+            this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.patientsDataGrid)).EndInit();
             this.TabsControl.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -298,6 +339,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Sex;
         private System.Windows.Forms.DataGridViewTextBoxColumn Complaints;
         private System.Windows.Forms.TabControl TabsControl;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.Label label1;
     }
 }
 
